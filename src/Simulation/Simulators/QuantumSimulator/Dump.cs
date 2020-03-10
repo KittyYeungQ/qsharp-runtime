@@ -11,12 +11,12 @@ namespace Microsoft.Quantum.Simulation.Simulators
     public partial class QuantumSimulator
     {
         /// <summary>
-        /// Dumps the wave function for the given qubits into the given target. 
+        /// Dumps the wavefunction for the given qubits into the given target. 
         /// If the target is QVoid or an empty string, it dumps it to the console
         /// using the `Message` function, otherwise it dumps the content into a file
         /// with the given name.
-        /// If the given qubits is null, it dumps the entire wave function, otherwise
-        /// it attemps to create the wave function or the resulting subsystem; if it fails
+        /// If the given qubits is null, it dumps the entire wavefunction, otherwise
+        /// it attemps to create the wavefunction or the resulting subsystem; if it fails
         /// because the qubits are entangled with some external qubit, it just generates a message.
         /// </summary>
         protected virtual QVoid Dump<T>(T target, IQArray<Qubit>? qubits = null)
@@ -28,11 +28,11 @@ namespace Microsoft.Quantum.Simulation.Simulators
                 var ids = qubits?.Select(q => (uint)q.Id).ToArray() ?? QubitIds;
 
                 var dumper = new SimpleDumper(this, channel);
-                channel($"# wave function for qubits with ids (least to most significant): {string.Join(";", ids)}");
+                channel($"# wavefunction for qubits with ids (least to most significant): {string.Join(";", ids)}");
 
                 if (!dumper.Dump(qubits))
                 {
-                    channel("## Qubits were entangled with an external qubit. Cannot dump corresponding wave function. ##");
+                    channel("## Qubits were entangled with an external qubit. Cannot dump corresponding wavefunction. ##");
                 }
 
                 return QVoid.Instance;
